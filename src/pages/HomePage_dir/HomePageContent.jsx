@@ -6,6 +6,7 @@ import Aircondition from "./Aircondition";
 import { useEffect } from "react";
 import WeeklyForecast from "./WeeklyForecast";
 
+
 const HomePageContent = () => {
 	let [GF, setGF] = useState(null);
 	let [SF, setSF] = useState(null);
@@ -14,9 +15,7 @@ const HomePageContent = () => {
 	let [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		if (GF && SF && WF !== null) {
-			setIsLoading((p) => (p = !p));
-			console.log(WF);
-			console.log("yes");
+			setIsLoading((p) => (p = false));
 		}
 	}, [GF, WF, SF]);
 
@@ -37,13 +36,13 @@ const HomePageContent = () => {
 						isLoading={isLoading}
 					/>
 				</div>
-				<div className='bg-bg-p h-[300px] md:h-[400px] md:text-[1.4rem] rounded-[0.5rem] w-[95%] mx-auto '>
+				<div className='bg-bg-p h-[300px] md:h-[400px] md:text-[1.4rem] rounded-[0.5rem] w-[95%] mx-auto font-semibold '>
 					<TodayForecast
 						TF={GF}
 						isLoading={isLoading}
 					/>
 				</div>
-				<div className='bg-bg-p rounded-[0.5rem] h-[300px] md:h-[400px] md:text-[1.4rem] mb-4 pb-2  w-[95%] mx-auto  '>
+				<div className='bg-bg-p rounded-[0.5rem] h-[300px] md:h-[400px] md:text-[1.4rem] mb-4 pb-2  w-[95%] mx-auto font-semibold '>
 					<Aircondition
 						GF={SF}
 						isLoading={isLoading}
@@ -51,7 +50,7 @@ const HomePageContent = () => {
 				</div>
 			</div>
 
-			<div className=' lg:w-[35%] lg:h-[81dvh] w-[95%] mx-auto  mt-6 md:w-[44%]  h-auto md:h-[91dvh]  '>
+			<div className=' lg:w-[35%] lg:h-[81dvh] w-[95%] mx-auto  mt-6 md:w-[44%] font-semibold h-auto md:h-[91dvh]  '>
 				<WeeklyForecast
 					data={WF}
 					isLoading={isLoading}

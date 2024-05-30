@@ -3,11 +3,17 @@ import { FaTemperatureQuarter } from "react-icons/fa6";
 import { FaWind } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { WiBarometer } from "react-icons/wi";
+import { motion } from "framer-motion";
 
 const Aircondition = ({ GF, isLoading }) => {
 	let GFItem = ({ data }) => {
 		return (
-			<div className='grid grid-cols-2 grid-rows-2 h-full '>
+			<motion.div
+				initial={{ scale: 0 }}
+				animate={{ scale: 1 }}
+				transition={{ duration: 1, type: "spring" }}
+				className='grid grid-cols-2 grid-rows-2 h-full '
+			>
 				<div className=' flex flex-wrap flex-col'>
 					<p className=' w-[40%] h-[100%] flex justify-center pt-8'>
 						<FaTemperatureQuarter className='text-[2.4rem]' />
@@ -43,7 +49,7 @@ const Aircondition = ({ GF, isLoading }) => {
 					<p className='w-[60%] h-[50%] flex items-end pl-1'>Pressure</p>
 					<p className='w-[60%] h-[50%] flex items-center pl-1'>{`${data.main.pressure} pa`}</p>
 				</div>
-			</div>
+			</motion.div>
 		);
 	};
 	return (

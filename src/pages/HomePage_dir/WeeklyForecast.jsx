@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import spinner from "../../Utilities/Spinner.svg";
+import { motion } from "framer-motion";
 const WeeklyForecast = ({ data, isLoading }) => {
 	let list = [];
 	let filteredData = (arr) => {
@@ -31,7 +32,7 @@ const WeeklyForecast = ({ data, isLoading }) => {
 	};
 
 	return (
-		<div className="bg-bg-p">
+		<div className='bg-bg-p'>
 			{isLoading ? (
 				<img
 					src={spinner}
@@ -39,7 +40,12 @@ const WeeklyForecast = ({ data, isLoading }) => {
 					className=' w-full h-full bg-bg-s'
 				/>
 			) : (
-				<div className=' pb-6 flex flex-col w-[96%] mx-auto md:h-[90dvh] '>
+				<motion.div
+					initial={{ y: 999 }}
+					animate={{ y: 0 }}
+					transition={{ type: "spring", duration: 2 }}
+					className=' pb-6 flex flex-col w-[96%] mx-auto md:h-[90dvh] '
+				>
 					<p className='p-2 md:p-4 text-[1.2rem] md:text-[1.2rem]'>Weekly Forecast</p>
 					<div className='w-[98%]  flex flex-col mx-auto gap-4 md:h-full md:gap-0 md:justify-center '>
 						{filteredData(data).map((item) => (
@@ -49,7 +55,7 @@ const WeeklyForecast = ({ data, isLoading }) => {
 							/>
 						))}
 					</div>
-				</div>
+				</motion.div>
 			)}
 		</div>
 	);

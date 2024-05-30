@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { fetchDataForOthers, getGeneralForecast, getSpecificForecast } from "../../Utilities/urls";
 import { FaSearch } from "react-icons/fa";
 
-
 const Searchbar = ({ setGF, setSF, setWF, query, setQuery, setIsLoading }) => {
 	let handleSubmit = (e) => {
 		e.preventDefault();
@@ -23,7 +22,7 @@ const Searchbar = ({ setGF, setSF, setWF, query, setQuery, setIsLoading }) => {
 			className='w-[90%] mx-auto flex h-[3rem] bg-bg-s rounded-md '
 		>
 			<input
-				className='border-none px-2 text-center py-3 w-[80%] outline-none bg-transparent '
+				className='border-none px-2 text-center py-3 w-[80%] outline-none bg-transparent font-semibold '
 				type='text'
 				placeholder='input city name'
 				value={query}

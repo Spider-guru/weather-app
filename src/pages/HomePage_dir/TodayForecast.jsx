@@ -1,4 +1,5 @@
 import spinner from "../../Utilities/Spinner.svg";
+import { motion } from "framer-motion";
 
 const TodayForecast = ({ TF, isLoading }) => {
 	let TFItems = ({ data }) => {
@@ -7,7 +8,12 @@ const TodayForecast = ({ TF, isLoading }) => {
 		let imgIcon = data.weather[0].icon;
 		let temp = data.main.temp;
 		return (
-			<div className='border-r border-[#ededed5b] last:border-none flex flex-col lg:flex-col lg:w-[8rem] lg:h-[80%]  md:justify-evenly items-center justify-center h-full gap-4 md:mt-8 flex-shrink-0 md:w-[10rem] mx-2 px-2 md:h-[80%]'>
+			<motion.div
+				initial={{ opacity: 0, y: -999 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1, type: 'spring' }}
+				className='border-r border-[#ededed5b] last:border-none flex flex-col lg:flex-col lg:w-[8rem] lg:h-[80%]  md:justify-evenly items-center justify-center h-full gap-4 md:mt-8 flex-shrink-0 md:w-[10rem] mx-2 px-2 md:h-[80%]'
+			>
 				<div className=''>{`${time}:00 hr(s)`}</div>
 				<div className=''>
 					<img
@@ -16,7 +22,7 @@ const TodayForecast = ({ TF, isLoading }) => {
 					/>
 				</div>
 				<div className=''>{`${Math.round(temp)}℃`}</div>
-			</div>
+			</motion.div>
 		);
 	};
 
