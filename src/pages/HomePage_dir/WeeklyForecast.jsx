@@ -17,7 +17,7 @@ const WeeklyForecast = ({ data, isLoading }) => {
 		let WeatherName = `${value.weather[0].main}`;
 		let Min_Max_temp = `${Math.round(value.main.temp_max)} / ${Math.round(value.main.temp_min)}`;
 		return (
-			<div className='flex border-b  last:border-none justify-evenly items-center py-2 md:h-[14rem] lg:h-[7.5rem] md:text-[1.4rem] '>
+			<div className=' hover:bg-bg-s ease-out duration-[0.5s] flex border-b hover:border-none last:border-none justify-evenly items-center py-2 md:h-[14rem] lg:h-[7.5rem] md:text-[1.4rem] '>
 				<p>{DOW}</p>
 				<div className='flex items-center'>
 					<img

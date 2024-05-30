@@ -14,7 +14,7 @@ const Aircondition = ({ GF, isLoading }) => {
 				transition={{ duration: 1, type: "spring" }}
 				className='grid grid-cols-2 grid-rows-2 h-full '
 			>
-				<div className=' flex flex-wrap flex-col'>
+				<div className='hover:bg-bg-s transition-all duration-700 hover:rounded-lg ease-in flex flex-wrap flex-col'>
 					<p className=' w-[40%] h-[100%] flex justify-center pt-8'>
 						<FaTemperatureQuarter className='text-[2.4rem]' />
 					</p>
@@ -24,7 +24,7 @@ const Aircondition = ({ GF, isLoading }) => {
 					)} ℃`}</p>
 				</div>
 
-				<div className=' flex flex-wrap flex-col'>
+				<div className='hover:bg-bg-s transition-all duration-700 hover:rounded-lg ease-in flex flex-wrap flex-col'>
 					<p className=' w-[40%] h-[100%] flex justify-center pt-8'>
 						<FaWind className='text-[2rem]' />
 					</p>
@@ -34,7 +34,7 @@ const Aircondition = ({ GF, isLoading }) => {
 					)} m/s`}</p>
 				</div>
 
-				<div className=' flex flex-wrap flex-col'>
+				<div className=' hover:bg-bg-s transition-all duration-700 hover:rounded-lg ease-in flex flex-wrap flex-col'>
 					<p className=' w-[40%] h-[100%] flex justify-center pt-8 '>
 						<WiHumidity className='text-[3.5rem]' />
 					</p>
@@ -42,7 +42,7 @@ const Aircondition = ({ GF, isLoading }) => {
 					<p className='w-[60%] h-[50%] flex items-center pl-1'>{`${data.main.humidity} g/m³`}</p>
 				</div>
 
-				<div className=' flex flex-col flex-wrap'>
+				<div className=' hover:bg-bg-s transition-all duration-700 hover:rounded-lg ease-in flex flex-col flex-wrap'>
 					<p className=' w-[40%] h-[100%] flex justify-center pt-8 '>
 						<WiBarometer className='text-[3.5rem]' />
 					</p>

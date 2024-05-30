@@ -6,7 +6,6 @@ import Aircondition from "./Aircondition";
 import { useEffect } from "react";
 import WeeklyForecast from "./WeeklyForecast";
 
-
 const HomePageContent = () => {
 	let [GF, setGF] = useState(null);
 	let [SF, setSF] = useState(null);
@@ -16,6 +15,7 @@ const HomePageContent = () => {
 	useEffect(() => {
 		if (GF && SF && WF !== null) {
 			setIsLoading((p) => (p = false));
+			console.log(SF);
 		}
 	}, [GF, WF, SF]);
 

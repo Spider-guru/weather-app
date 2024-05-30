@@ -10,9 +10,10 @@ const TodayForecast = ({ TF, isLoading }) => {
 		return (
 			<motion.div
 				initial={{ opacity: 0, y: -999 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 1, type: 'spring' }}
-				className='border-r border-[#ededed5b] last:border-none flex flex-col lg:flex-col lg:w-[8rem] lg:h-[80%]  md:justify-evenly items-center justify-center h-full gap-4 md:mt-8 flex-shrink-0 md:w-[10rem] mx-2 px-2 md:h-[80%]'
+				animate={{ opacity: 0.8, y: 0 }}
+				whileHover={{ opacity: 1, scale: 0.9 }}
+				transition={{ duration: 1, type: "spring" }}
+				className=' flex flex-col lg:flex-col lg:w-[8rem] lg:h-[80%]  md:justify-evenly items-center justify-center h-[90%] gap-4 md:mt-8 flex-shrink-0 md:w-[10rem] px-2 md:h-[80%] bg-bg-s rounded-lg'
 			>
 				<div className=''>{`${time}:00 hr(s)`}</div>
 				<div className=''>
