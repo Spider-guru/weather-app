@@ -20,7 +20,7 @@ const Navbar = ({ setIsOutletRendered, isMenuActive, setIsMenuActive }) => {
 			animate={isMenuActive ? "open" : "closed"}
 			variants={variants}
 			transition={spring}
-			className={`bg-bg-s text-center fixed w-full left-[0] bottom-0 h-[3rem]  md:w-[100px] md:h-[100dvh]  `}
+			className={`bg-bg-p bg-opacity-[0.5] text-center fixed w-full left-[0] bottom-0 h-[3rem]  md:w-[100px] md:h-[100dvh]  `}
 		>
 			<motion.div
 				whileHover={{ scale: 1.3 }}
@@ -61,4 +61,3 @@ const Navbar = ({ setIsOutletRendered, isMenuActive, setIsMenuActive }) => {
 };
 
 export default Navbar;
-
