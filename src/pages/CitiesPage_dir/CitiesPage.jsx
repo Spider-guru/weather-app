@@ -1,18 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import CountryData from "./CitiesDatabase";
 import { MdClear } from "react-icons/md";
+import { getGeneralForecast, getSpecificForecast } from "../../Utilities/urls";
+import CurrentCityInfo from "../HomePage_dir/CurrentCityInfo";
+import Aircondition from "../HomePage_dir/Aircondition";
+import TodayForecast from "../HomePage_dir/TodayForecast";
 
-import { useEffect } from "react";
 const CitiesPage = () => {
 	let [filteredData, setFilteredData] = useState([]);
 	let [query, setQuery] = useState("");
+	let [results, setResults] = useState(false);
+	let [GF, setGF] = useState(null);
+	let [SF, setSF] = useState(null);
+	let [isLoading, setIsLoading] = useState(true);
 
+	let getCityWeather = (param) => {
+		try {
+			getGeneralForecast(param, setGF, setResults);
+			getSpecificForecast(param, setSF, setResults);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	let CityItemComponent = ({ data }) => {
 		return (
 			<div
-				onClick={() => getCityWeather()}
-				className='flex flex-col gap-1 bg-bg-p p-4 my-2 mx-2 rounded-md'
+				onClick={() => {
+					setFilteredData((p) => (p = []));
+					setQuery((p) => (p = ""));
+					getCityWeather(data.capital);
+				}}
+				className=' flex flex-col gap-1 bg-bg-p p-4 my-2 mx-2 rounded-md'
 			>
 				<p className='font-[verdana] tracking-widest'>{data.capital}</p>
 				<p className='font-serif tracking-wider text-[0.8rem] font-semibold text-[#ffffffa4]'>
@@ -23,7 +42,7 @@ const CitiesPage = () => {
 	};
 	let searchCity = () => {
 		if (query !== "") {
-			console.log(query);
+			// console.log(query);
 			setFilteredData(
 				(p) =>
 					(p = CountryData.filter((item) =>
@@ -33,12 +52,19 @@ const CitiesPage = () => {
 		} else if (query == "") {
 			setFilteredData((p) => (p = []));
 		}
-		console.log(filteredData);
 	};
-
 	useEffect(() => {
 		searchCity();
 	}, [query]);
+	useEffect(() => {
+		if (GF && SF !== null) {
+			setTimeout(() => {
+				setIsLoading((p) => !p);
+			}, 2000);
+			console.log(SF);
+			console.log(GF);
+		}
+	}, [GF, SF]);
 	return (
 		<div className=' h-[94dvh] overflow-y-auto mt-14'>
 			<div>
@@ -64,14 +90,13 @@ const CitiesPage = () => {
 							className=' h-full w-[10%] flex justify-center items-center cursor-pointer'
 							onClick={(e) => {
 								setFilteredData((p) => (p = []));
-								console.log(e);
 							}}
 						>
 							<MdClear />
 						</button>
 					</form>
 
-					<div className=' z-10 w-[90%] mx-auto mt-1  overflow-y-auto flex flex-col gap-2 max-h-[20rem]'>
+					<div className='bg-bg-s absolute left-5 z-10 w-[90%] mx-auto mt-1  overflow-y-auto flex flex-col gap-2 max-h-[20rem]'>
 						{filteredData == []
 							? "no result yet"
 							: filteredData.map((item) => (
@@ -83,8 +108,25 @@ const CitiesPage = () => {
 					</div>
 				</div>
 
-				<div className='border-4'>
-					<p className='font-bold'>Result</p>
+				<div className=' pt-4 pb-10 border w-[95%] mx-auto flex flex-col gap-8'>
+					<div className="bg-bg-p w-[90%] mx-auto">
+						<CurrentCityInfo
+							isLoading={isLoading}
+							SF={SF}
+						/>
+					</div>
+					<div className="bg-bg-p w-[90%] mx-auto">
+						<Aircondition
+							isLoading={isLoading}
+							GF={SF}
+						/>
+					</div>
+					<div className="bg-bg-p w-[90%] mx-auto">
+						<TodayForecast
+							isLoading={isLoading}
+							TF={GF}
+						/>
+					</div>
 				</div>
 			</div>
 			<Navbar />

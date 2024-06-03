@@ -1,6 +1,6 @@
 let key = import.meta.env.VITE_WEATHER_KEY;
 
-export let fetchDataForOthers = async (query, state) => {
+export let fetchDataForOthers = async (query, state, errState) => {
 	try {
 		let res = await fetch(
 			`https://api.openweathermap.org/data/2.5/forecast?q=${
@@ -10,12 +10,13 @@ export let fetchDataForOthers = async (query, state) => {
 		let data = await res.json();
 		state((p) => (p = data));
 	} catch (error) {
-		console.info(error);
+		errState((p) => (p = true));
+		console.log(`error from fetch other forecast`);
 		return null;
 	}
 };
 
-export let getGeneralForecast = async (query, state) => {
+export let getGeneralForecast = async (query, state, errState) => {
 	try {
 		let res = await fetch(
 			`https://api.openweathermap.org/data/2.5/forecast?q=${
@@ -25,12 +26,13 @@ export let getGeneralForecast = async (query, state) => {
 		let data = await res.json();
 		state((p) => (p = data));
 	} catch (error) {
+		errState((p) => (p = true));
 		console.log(`error from fetch general forecast`);
 		return null;
 	}
 };
 
-export let getSpecificForecast = async (query, state) => {
+export let getSpecificForecast = async (query, state, errState) => {
 	try {
 		let res = await fetch(
 			`https://api.openweathermap.org/data/2.5/weather?appid=${key}&units=metric&q=${
@@ -40,8 +42,9 @@ export let getSpecificForecast = async (query, state) => {
 		let data = await res.json();
 		state((p) => (p = data));
 	} catch (error) {
-		return null;
+		errState((p) => (p = true));
 		console.log("error from fetch specific forecast");
+		return null;
 	}
 };
 

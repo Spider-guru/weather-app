@@ -1,9 +1,9 @@
+import { useMemo } from "react";
 import spinner from "../../Utilities/Spinner.svg";
 import { motion } from "framer-motion";
 
 const TodayForecast = ({ TF, isLoading }) => {
 	let TFItems = ({ data }) => {
-		// console.log("hello");
 		let time = new Date(data.dt_txt).getHours();
 		let imgIcon = data.weather[0].icon;
 		let temp = data.main.temp;
@@ -27,6 +27,25 @@ const TodayForecast = ({ TF, isLoading }) => {
 		);
 	};
 
+	let TFCon = ({ data }) => {
+		return (
+			<>
+				{data.list.map((item) => (
+					<TFItems
+						data={item}
+						key={item.dt}
+					/>
+				))}
+			</>
+		);
+	};
+
+	let listItems = useMemo(
+		() =>
+	<TFCon data={TF}/>,
+		[TF]
+	);
+
 	return (
 		<div className='flex flex-col'>
 			<p className='h-[2rem] mb-2 p-1 '>Today's Forecast</p>
@@ -37,12 +56,8 @@ const TodayForecast = ({ TF, isLoading }) => {
 						className=' bg-bg-s h-full w-full '
 					/>
 				) : (
-					TF.list.map((item) => (
-						<TFItems
-							data={item}
-							key={item.dt}
-						/>
-					))
+					listItems
+					// "helo"
 				)}
 			</div>
 		</div>

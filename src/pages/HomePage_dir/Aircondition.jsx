@@ -4,6 +4,7 @@ import { FaWind } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { WiBarometer } from "react-icons/wi";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const Aircondition = ({ GF, isLoading }) => {
 	let GFItem = ({ data }) => {
@@ -52,6 +53,7 @@ const Aircondition = ({ GF, isLoading }) => {
 			</motion.div>
 		);
 	};
+	let airCondition = useMemo(() => <GFItem data={GF} />, [GF]);
 	return (
 		<div className=''>
 			<p className='p-1 mb-1 md:px-2 h-[2rem] '>Air Condition</p>
@@ -62,7 +64,7 @@ const Aircondition = ({ GF, isLoading }) => {
 						className='h-full w-full bg-bg-s '
 					/>
 				) : (
-					<GFItem data={GF} />
+					airCondition
 				)}
 			</div>
 		</div>

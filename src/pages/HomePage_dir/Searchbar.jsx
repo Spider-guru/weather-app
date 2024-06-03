@@ -1,20 +1,30 @@
 import { useEffect } from "react";
 import { fetchDataForOthers, getGeneralForecast, getSpecificForecast } from "../../Utilities/urls";
 import { FaSearch } from "react-icons/fa";
+import { useMemo } from "react";
 
-const Searchbar = ({ setGF, setSF, setWF, query, setQuery, setIsLoading }) => {
+const Searchbar = ({ setGF, setSF, setWF, query, setQuery, setIsError, isError }) => {
 	let handleSubmit = (e) => {
 		e.preventDefault();
 		setQuery((p) => (p = ""));
+		// setIsError((p) => (p = false));
 		try {
-			fetchDataForOthers(query, setWF);
-			getGeneralForecast(query, setGF);
-			getSpecificForecast(query, setSF);
+			fetchDataForOthers(query, setWF, setIsError);
+			getGeneralForecast(query, setGF, setIsError);
+			getSpecificForecast(query, setSF, setIsError);
 		} catch (error) {
 			console.log("error from searchbar");
 		}
-		console.log("hello");
 	};
+useEffect(()=>{
+			try {
+				fetchDataForOthers(query, setWF, setIsError);
+				getGeneralForecast(query, setGF, setIsError);
+				getSpecificForecast(query, setSF, setIsError);
+			} catch (error) {
+				console.log("error from searchbar use Effect");
+			}
+},[])
 
 	return (
 		<form

@@ -20,7 +20,7 @@ const CurrentCityInfo = ({ SF, isLoading }) => {
 							className=' w-[48%]'
 						>
 							<div className='h-[50%] flex flex-col justify-center items-center '>
-								<p className='text-2xl lg:text-[2rem]'>{Object.values(SF)[12]}</p>
+								<p className='text-2xl lg:text-[2rem]'>{SF.name}</p>
 
 								<p className='text-[0.8rem] lg:text-[1rem] pt-2'>
 									Desc: {Object.values(SF)[1][0].description}
