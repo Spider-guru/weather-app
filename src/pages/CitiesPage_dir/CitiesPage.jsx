@@ -57,13 +57,15 @@ const CitiesPage = () => {
 		searchCity();
 	}, [query]);
 	useEffect(() => {
+		let id;
 		if (GF && SF !== null) {
-			setTimeout(() => {
+			id = setTimeout(() => {
 				setIsLoading((p) => !p);
 			}, 2000);
 			console.log(SF);
 			console.log(GF);
 		}
+		return () => clearTimeout(id);
 	}, [GF, SF]);
 	return (
 		<div className=' h-[94dvh] overflow-y-auto mt-14'>
@@ -108,20 +110,20 @@ const CitiesPage = () => {
 					</div>
 				</div>
 
-				<div className=' pt-4 pb-10 border w-[95%] mx-auto flex flex-col gap-8'>
-					<div className="bg-bg-p w-[90%] mx-auto">
+				<div className=' pt-4 pb-10  w-[95%] mx-auto flex flex-col gap-8'>
+					<div className='bg-bg-p w-[90%] mx-auto lg:h-[20rem] flex flex-col  justify-center'>
 						<CurrentCityInfo
 							isLoading={isLoading}
 							SF={SF}
 						/>
 					</div>
-					<div className="bg-bg-p w-[90%] mx-auto">
+					<div className='bg-bg-p w-[90%] mx-auto'>
 						<Aircondition
 							isLoading={isLoading}
 							GF={SF}
 						/>
 					</div>
-					<div className="bg-bg-p w-[90%] mx-auto">
+					<div className='bg-bg-p w-[90%] mx-auto p-2 '>
 						<TodayForecast
 							isLoading={isLoading}
 							TF={GF}

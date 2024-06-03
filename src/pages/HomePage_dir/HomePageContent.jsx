@@ -6,6 +6,7 @@ import Aircondition from "./Aircondition";
 import { useEffect } from "react";
 import WeeklyForecast from "./WeeklyForecast";
 import { motion } from "framer-motion";
+import { fetchDataForOthers, getGeneralForecast, getSpecificForecast } from "../../Utilities/urls";
 
 const HomePageContent = () => {
 	let [GF, setGF] = useState(null);
@@ -15,7 +16,7 @@ const HomePageContent = () => {
 	let [isLoading, setIsLoading] = useState(true);
 	let [isError, setIsError] = useState(false);
 	let ErrorMsg = () => {
-		console.log(isError);
+		// console.log(isError);
 		return (
 			<motion.div
 				initial={{ opacity: 1 }}
@@ -57,10 +58,14 @@ const HomePageContent = () => {
 	}, [GF, WF, SF]);
 
 	useEffect(()=>{
-				if (isError == true) {
-					console.log("error is true");
+				try {
+					fetchDataForOthers(query, setWF, setIsError);
+					getGeneralForecast(query, setGF, setIsError);
+					getSpecificForecast(query, setSF, setIsError);
+				} catch (error) {
+					console.log("error from searchbar use Effect");
 				}
-	},[isError])
+	},[])
 
 	return (
 		<div
@@ -70,7 +75,6 @@ const HomePageContent = () => {
 				<ErrorMsg />
 			) : (
 				<>
-					{" "}
 					<div className='flex-col overflow-auto lg:h-[91dvh] md:w-[54%]   flex justify-evenly gap-4 mt-2 lg:w-[60%] md:h-[91dvh]  '>
 						<div className=' bg-bg-p rounded-[0.5rem] h-[300px] md:h-[450px] lg:h-[300px] pb-4 pt-4 lg:mt-8 w-[95%] mx-auto  '>
 							<Searchbar
@@ -101,7 +105,7 @@ const HomePageContent = () => {
 							/>
 						</div>
 					</div>
-					<div className=' lg:w-[35%] lg:h-[81dvh] w-[95%] mx-auto  mt-6 md:w-[44%] font-semibold h-auto md:h-[91dvh]  '>
+					<div className=' lg:w-[35%] lg:h-[81dvh] w-[95%] mx-auto  mt-6 md:w-[44%] font-semibold h-full   md:h-[91dvh]  '>
 						<WeeklyForecast
 							data={WF}
 							isLoading={isLoading}

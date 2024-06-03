@@ -55,7 +55,7 @@ const Aircondition = ({ GF, isLoading }) => {
 	};
 	let airCondition = useMemo(() => <GFItem data={GF} />, [GF]);
 	return (
-		<div className=''>
+		<div className='lg:text-[1.6rem]'>
 			<p className='p-1 mb-1 md:px-2 h-[2rem] '>Air Condition</p>
 			<div className='h-[16rem] w-[96%] md:h-[21.9rem] mx-auto '>
 				{isLoading ? (

@@ -47,17 +47,18 @@ const TodayForecast = ({ TF, isLoading }) => {
 	);
 
 	return (
-		<div className='flex flex-col'>
+		<div className='flex flex-col lg:text-[1.4rem]'>
 			<p className='h-[2rem] mb-2 p-1 '>Today's Forecast</p>
-			<div className=' h-[16rem] md:h-[21.9rem] w-[96%] mx-auto overflow-x-auto flex lg:flex-row  gap-4 '>
+			<div className=' '>
 				{isLoading ? (
 					<img
 						src={spinner}
 						className=' bg-bg-s h-full w-full '
 					/>
 				) : (
-					listItems
-					// "helo"
+					<div className='mx-auto overflow-x-auto flex  gap-4  h-[16rem] md:h-[21.9rem] w-[96%] lg:pl-16 '>
+						{listItems}
+					</div>
 				)}
 			</div>
 		</div>

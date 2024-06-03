@@ -16,15 +16,6 @@ const Searchbar = ({ setGF, setSF, setWF, query, setQuery, setIsError, isError }
 			console.log("error from searchbar");
 		}
 	};
-useEffect(()=>{
-			try {
-				fetchDataForOthers(query, setWF, setIsError);
-				getGeneralForecast(query, setGF, setIsError);
-				getSpecificForecast(query, setSF, setIsError);
-			} catch (error) {
-				console.log("error from searchbar use Effect");
-			}
-},[])
 
 	return (
 		<form

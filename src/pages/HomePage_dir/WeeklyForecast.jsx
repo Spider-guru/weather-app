@@ -32,7 +32,7 @@ const WeeklyForecast = ({ data, isLoading }) => {
 	};
 
 	return (
-		<div className='bg-bg-p'>
+		<div className='bg-bg-p h-[89dvh] overflow-y-auto'>
 			{isLoading ? (
 				<img
 					src={spinner}
