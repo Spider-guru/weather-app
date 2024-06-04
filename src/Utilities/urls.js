@@ -8,7 +8,13 @@ export let fetchDataForOthers = async (query, state, errState) => {
 			}&appid=${key}&units=metric`
 		);
 		let data = await res.json();
-		state((p) => (p = data));
+		setTimeout(() => {
+			if (data.cod == "404") {
+				errState((p) => (p = true));
+			} else {
+				state((p) => (p = data));
+			}
+		}, 2000);
 	} catch (error) {
 		errState((p) => (p = true));
 		console.log(`error from fetch other forecast`);
@@ -24,7 +30,13 @@ export let getGeneralForecast = async (query, state, errState) => {
 			}&appid=${key}&units=metric&cnt=6`
 		);
 		let data = await res.json();
-		state((p) => (p = data));
+		setTimeout(() => {
+			if (data.cod == "404") {
+				errState((p) => (p = true));
+			} else {
+				state((p) => (p = data));
+			}
+		}, 2000);
 	} catch (error) {
 		errState((p) => (p = true));
 		console.log(`error from fetch general forecast`);
@@ -40,7 +52,13 @@ export let getSpecificForecast = async (query, state, errState) => {
 			}`
 		);
 		let data = await res.json();
-		state((p) => (p = data));
+		setTimeout(() => {
+			if (data.cod == "404") {
+				errState((p) => (p = true));
+			} else {
+				state((p) => (p = data));
+			}
+		}, 2000);
 	} catch (error) {
 		errState((p) => (p = true));
 		console.log("error from fetch specific forecast");
